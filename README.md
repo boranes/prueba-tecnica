@@ -1,3 +1,6 @@
+# Git hooks
+"husky" and "lint-staged" npm packages has been used to configure "pre-commit" actions, using "eslint" before each commit action to ensure code staged having the correct format.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
