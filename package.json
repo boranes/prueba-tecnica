@@ -16,6 +16,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.6.2"
   },
   "scripts": {
@@ -25,7 +27,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write ./**/*.{js,jsx,css,md,json} --config ./.prettierrc"
+    "format": "prettier --write ./**/*.{js,jsx,css,md,json} --config ./.prettierrc",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "lint-staged": {
+    "lint": "eslint 'src/**/*.js'",
+    "*.prettierrc": "prettier --write"
   }
 }
