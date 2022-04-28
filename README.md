@@ -29,42 +29,113 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Descripción de la prueba: Prueba técnica de Front End React #
+Este documento comprende los requerimientos para realizar la prueba técnica de Front-End React.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Se requiere el uso de **GIT** para la realización de la prueba. Esperamos que nos facilites acceso a un repositorio privado.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Requisitos obligatorios ## 
+Librerías a usar:
+1. Uso de React
+    * Usando la utilidad create-react-app.
+    * Usando programación funcional (hooks).
+2. Uso de Redux
+    * Con alguno de sus middlewares más famosos: Thunk, Observables o Saga.
+    * Valoramos especialmente el uso de este último (redux-saga).
+3. Navegacion
+    * Usando la libreria react-router.
+4. Maquetacion
+    * Uso de algún preprocesador de estilos (Sass, Less).
+    * Valoramos muy positivamente el uso de styled-components y sus utilidades.
+    * Debe considerar al menos un breakpoint orientado a dispositivos móviles.
+    * Se tendrá en cuenta todo lo que puedas agregarle en calidad de UI, si bien este punto no es excluyente.
+5. Formato de codigo:
+    * Uso de eslint.
+    * Uso de prettier.
+    * Valoramos positivamente si configuras un git hook que chequea el “lint" antes de realizar un commit o push a tu repositorio.
+6. Asincronia (CRUD)
+    * Implementación de las llamadas asíncronas a la api que especificaremos en el enunciado.
+    * Tener en cuenta el manejo de errores y flujo de uso.
+7. Documentacion
+    * Edición del README.md del repositorio con instrucciones para instalar y revisar el proyecto.
+    * Explicación breve de lo implementado, con todo lo que creas oportuno comunicarnos.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Requisitos opcionales ##
+1. Implementar paginación del listado de usuarios.
+2. Testing básico de componentes (valoramos positivamente el uso de testing-library).
 
-## Learn More
+## Consideraciones adicionales ##
+Siéntete libre de usar cualquier librería, pero recuerda justificar su uso.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Siéntete libre de agregar funcionalidades no previstas en el enunciado de la prueba.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Ejercicio ##
+Se desea implementar:
+### 1. Una lista de usuarios ###
 
-### Code Splitting
+Endpoint: GET https://reqres.in/api/users
+En caso de éxito, se recibe el código de respuesta 200 y los datos dentro de la clave "data":
+```
+{
+ "data": [
+ {
+ "id": 1,
+ "first_name": "Eve",
+ "last_name": "Holt",
+...
+ },
+ {
+ "id": 2,
+ "first_name": "Charles",
+ "last_name": "Morris",
+ ...
+ }
+ ]
+...
+}
+```
+### 2. Una vista con los detalles de usuario ###
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Debe constar de:
+* Un campo de texto para first_name.
+* Un campo de texto para last_name.
+* Un campo de texto para email.
+* Un botón que devuelva al listado.
 
-### Analyzing the Bundle Size
+Endpoint: GET https://reqres.in/api/users/:id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Borrado ####
+En la vista de detalle de usuario se desea añadir un botón que permita borrarlo.
 
-### Making a Progressive Web App
+Endpoint: DELETE https://reqres.in/api/users/:id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Edición ####
+La vista de detalle de usuario deberá permitir edición para actualizar sus datos. Se requiere añadir a la vista un botón de Actualizar.
 
-### Advanced Configuration
+Endpoint: PUT https://reqres.in/api/users/:id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Un ejemplo de petición:
+```
+{
+ "email": "johana.mir@reqres.in",
+ "first_name": "Johana",
+ "last_name": "Miranda",
+}
+```
+### 3. Una vista de login ###
 
-### Deployment
+Debe constar de:
+* Un campo de texto para el usuario.
+* Un campo de texto para la contraseña.
+* Un botón de login.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Debe autenticarse contra la API con usuario y contraseña. ésta devolverá un token de autenticación, que será el que garantice que el usuario está logado.
 
-### `npm run build` fails to minify
+Si el usuario posee este token podrá acceder a las dos vistas anteriores (listado de usuarios y vista de detalle). En caso contrario no deberá tener acceso.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Adicionalmente, en las dos vistas anteriores (listado y detalle de usuario) deberá permitirse la acción de logout mediante botón.
+
+Endpoint: POST https://reqres.in/api/login?email=<email>&password=<password>
+
+NOTA: La API de pruebas devolverá al usuario un token si se le manda un usuario que esté en la base de datos y cualquier contraseña.
