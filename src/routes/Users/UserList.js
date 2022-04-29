@@ -1,5 +1,10 @@
+import { useState } from "react";
+
 const UserList = () => {
-  return <>User List</>;
+  const [users, setUsers] = useState([]);
+  if (!users.length) {
+    return <p>No users were found</p>;
+  }
 };
 
 export default UserList;
