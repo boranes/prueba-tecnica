@@ -30,7 +30,7 @@ const SignForm = ({ title, buttonText, signFunction }) => {
 
   return (
     <>
-      <StyledForm onSubmit={handleSubmit} width="200px">
+      <StyledForm data-testid="signForm" onSubmit={handleSubmit} width="200px">
         <h1>{title}</h1>
         <StyledInput type="text" placeholder="Your email" ref={emailRef} />
         <StyledInput
@@ -39,12 +39,16 @@ const SignForm = ({ title, buttonText, signFunction }) => {
           ref={passwordRef}
         />
         <StyledPrimaryButton>{buttonText}</StyledPrimaryButton>
-        <div
-          data-testid="error-message"
-          className={`${message.status} error-message`}
-        >
-          {message?.message}
-        </div>
+        {message?.message ? (
+          <div
+            data-testid="error-message"
+            className={`${message.status} error-message`}
+          >
+            {message?.message}
+          </div>
+        ) : (
+          ""
+        )}
       </StyledForm>
     </>
   );
