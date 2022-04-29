@@ -7,8 +7,8 @@ import {
   LOGOUT,
 } from "./types";
 
-export const register = (username, email, password) => (dispatch) => {
-  return AuthService.register(username, email, password).then(
+export const register = (email, password) => (dispatch) => {
+  return AuthService.register(email, password).then(
     ({ token, error }) => {
       if (token) {
         localStorage.setItem("currentUser", JSON.stringify(token));
