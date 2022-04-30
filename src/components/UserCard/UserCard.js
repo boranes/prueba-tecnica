@@ -1,11 +1,23 @@
+import StyledAvatar from "../../styled-components/Images/StyledAvatar";
+import StyledUserCard from "../../styled-components/Users/StyledUserCard";
+import StyledBorderedLink from "../../styled-components/Links/StyledBorderedLink";
+
 const UserCard = ({ user }) => {
   return (
-    <div role="listitem">
-      <img src={user.avatar} alt={user.first_name} />
-      <span>{user.first_name}</span>
-      <span>{user.last_name}</span>
-      <span>{user.email}</span>
-    </div>
+    <StyledUserCard>
+      <StyledAvatar
+        src={user.avatar}
+        alt={`${user.first_name} ${user.last_name}`}
+        type="rounded"
+      />
+      <span className="name">
+        {user.first_name} {user.last_name}
+      </span>
+      <span className="email">{user.email}</span>
+      <StyledBorderedLink to={`/users/${user.id}`}>
+        See profile
+      </StyledBorderedLink>
+    </StyledUserCard>
   );
 };
 

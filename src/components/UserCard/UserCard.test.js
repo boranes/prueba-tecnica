@@ -1,5 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import UserCard from "./UserCard";
+
+const Wrapper = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
 
 describe("Testing User Card Component", () => {
   test("Should render component successfully", () => {
@@ -10,12 +13,14 @@ describe("Testing User Card Component", () => {
       email: "bobmarley@gmail.com",
       avatar: "http://example.com/",
     };
-    render(<UserCard user={mockedUser} />);
-    expect(screen.getByText(mockedUser.first_name)).toBeInTheDocument();
-    expect(screen.getByText(mockedUser.last_name)).toBeInTheDocument();
+    render(<UserCard user={mockedUser} />, { wrapper: Wrapper });
+    expect(
+      screen.getByText(`${mockedUser.first_name} ${mockedUser.last_name}`)
+    ).toBeInTheDocument();
     expect(screen.getByText(mockedUser.email)).toBeInTheDocument();
-    expect(screen.getByAltText(mockedUser.first_name).src).toEqual(
-      mockedUser.avatar
-    );
+    expect(
+      screen.getByAltText(`${mockedUser.first_name} ${mockedUser.last_name}`)
+        .src
+    ).toEqual(mockedUser.avatar);
   });
 });
