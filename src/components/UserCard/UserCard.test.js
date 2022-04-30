@@ -8,12 +8,14 @@ describe("Testing User Card Component", () => {
       first_name: "Bob",
       last_name: "Marley",
       email: "bobmarley@gmail.com",
-      avatar: "http://example.com",
+      avatar: "http://example.com/",
     };
     render(<UserCard user={mockedUser} />);
     expect(screen.getByText(mockedUser.first_name)).toBeInTheDocument();
     expect(screen.getByText(mockedUser.last_name)).toBeInTheDocument();
     expect(screen.getByText(mockedUser.email)).toBeInTheDocument();
-    expect(screen.getByText(mockedUser.avatar)).toBeInTheDocument();
+    expect(screen.getByAltText(mockedUser.first_name).src).toEqual(
+      mockedUser.avatar
+    );
   });
 });

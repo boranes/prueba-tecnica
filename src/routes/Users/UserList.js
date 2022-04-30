@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import StyledUserList from "../../styled-components/Users/StyledUserList";
 import StyledContainer from "../../styled-components/Layout/StyledContainer";
 import UserService from "../../services/Users/users.service";
+import UserCard from "../../components/UserCard/UserCard";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -14,11 +15,7 @@ const UserList = () => {
     return (
       <StyledUserList role="list">
         {users.map((user) => {
-          return (
-            <div key={user.id} role="listitem">
-              {JSON.stringify(user)}
-            </div>
-          );
+          return <UserCard key={user.id} user={user} />;
         })}
       </StyledUserList>
     );
