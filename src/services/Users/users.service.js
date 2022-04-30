@@ -3,7 +3,7 @@ import HTTPMethods from "../../utils/HTTPMethods";
 import APIService from "../api.service";
 
 const getUsers = async (page = 1) => {
-  let url = APIService.buildUrl("/users?per_page=3");
+  let url = APIService.buildUrl("/users?per_page=3&delay=1");
   if (page > 1) url = url.concat(`&page=${page}`);
   return APIService.call(url);
 };
