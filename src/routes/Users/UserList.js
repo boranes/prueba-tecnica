@@ -34,7 +34,7 @@ const UserList = () => {
   };
 
   const shouldPaginatorBePrinted = () => {
-    return users && users.length > 0 && !loading && totalPages > 1;
+    return users.length && !loading && totalPages > 1;
   };
 
   useEffect(() => {

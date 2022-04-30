@@ -4,7 +4,7 @@ import StyledBorderedLink from "../../styled-components/Links/StyledBorderedLink
 
 const UserCard = ({ user }) => {
   return (
-    <StyledUserCard>
+    <StyledUserCard role="listitem">
       <StyledAvatar
         src={user.avatar}
         alt={`${user.first_name} ${user.last_name}`}
