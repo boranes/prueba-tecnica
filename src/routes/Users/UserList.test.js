@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import UserList from "./UserList";
 import store from "../../store/store";
+import React from "react";
 
 const Wrapper = ({ children }) => (
   <Provider store={store}>
@@ -11,12 +12,7 @@ const Wrapper = ({ children }) => (
 );
 
 describe("Testing User List Page", () => {
-  test("Should show empty message if UserList is empty", () => {
-    render(<UserList />, { wrapper: Wrapper });
-    expect(screen.getByText("No users were found")).toBeInTheDocument();
-  });
-
-  test("Should render a list of users", () => {
+  test("Should show empty message at the beginning and a user list after a while due async call", async () => {
     const mockedUsers = [
       {
         id: 7,
@@ -34,7 +30,9 @@ describe("Testing User List Page", () => {
       },
     ];
     render(<UserList />, { wrapper: Wrapper });
-    const renderedUsers = screen.getAllByRole("listitem");
-    expect(renderedUsers.length).toEqual(mockedUsers.length);
+    expect(screen.getByText("No users were found")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryAllByRole("listitem").length).toBe(mockedUsers.length);
+    });
   });
 });
