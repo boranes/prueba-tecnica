@@ -5,12 +5,18 @@ import UserService from "../../services/Users/users.service";
 import UserCard from "../../components/UserCard/UserCard";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const UserList = () => {
   const { currentUser } = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
 
   const printUsers = () => {
+    if (loading) {
+      return <Loader />;
+    }
+
     if (!users.length) {
       return <p>No users were found</p>;
     }
@@ -25,8 +31,10 @@ const UserList = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     UserService.getUsers(1).then((data) => {
       setUsers(data.data);
+      setLoading(false);
     });
   }, []);
 
