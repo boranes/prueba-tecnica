@@ -1,4 +1,3 @@
-import { waitFor } from "@testing-library/react";
 import AuthService from "./auth.service";
 
 const mockedToken = "QpwL5tke4Pnpja7X4";
