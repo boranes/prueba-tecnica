@@ -3,8 +3,11 @@ import StyledUserList from "../../styled-components/Users/StyledUserList";
 import StyledContainer from "../../styled-components/Layout/StyledContainer";
 import UserService from "../../services/Users/users.service";
 import UserCard from "../../components/UserCard/UserCard";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const UserList = () => {
+  const { currentUser } = useSelector((state) => state.auth);
   const [users, setUsers] = useState([]);
 
   const printUsers = () => {
@@ -27,8 +30,8 @@ const UserList = () => {
     });
   }, []);
 
-  if (!users.length) {
-    return <p>No users were found</p>;
+  if (!currentUser) {
+    return <Navigate to="/login" />;
   }
 
   return (
