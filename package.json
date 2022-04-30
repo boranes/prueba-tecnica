@@ -58,7 +58,9 @@
     ]
   },
   "lint-staged": {
-    "lint": "eslint 'src/**/*.js'",
-    "*.prettierrc": "prettier --write"
+    "src/**/*.js": [
+      "npx eslint .",
+      "npx prettier --write"
+    ]
   }
 }
