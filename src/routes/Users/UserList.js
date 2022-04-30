@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react";
 import StyledUserList from "../../styled-components/Users/StyledUserList";
+import StyledContainer from "../../styled-components/Layout/StyledContainer";
+import UserService from "../../services/Users/users.service";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
 
+  const printUsers = () => {
+    if (!users.length) {
+      return <p>No users were found</p>;
+    }
+
+    return (
+      <StyledUserList role="list">
+        {users.map((user) => {
+          return (
+            <div key={user.id} role="listitem">
+              {JSON.stringify(user)}
+            </div>
+          );
+        })}
+      </StyledUserList>
+    );
+  };
+
   useEffect(() => {
-    setTimeout(() => {
-      setUsers([
-        {
-          id: 7,
-          email: "michael.lawson@reqres.in",
-          first_name: "Michael",
-          last_name: "Lawson",
-          avatar: "https://reqres.in/img/faces/7-image.jpg",
-        },
-        {
-          id: 8,
-          email: "lindsay.ferguson@reqres.in",
-          first_name: "Lindsay",
-          last_name: "Ferguson",
-          avatar: "https://reqres.in/img/faces/8-image.jpg",
-        },
-      ]);
-    }, 500);
+    UserService.getUsers(1).then((data) => {
+      setUsers(data.data);
+    });
   }, []);
 
   if (!users.length) {
@@ -30,15 +35,9 @@ const UserList = () => {
   }
 
   return (
-    <StyledUserList role="list">
-      {users.map((user) => {
-        return (
-          <div key={user.id} role="listitem">
-            {user.first_name}
-          </div>
-        );
-      })}
-    </StyledUserList>
+    <>
+      <StyledContainer>{printUsers()}</StyledContainer>
+    </>
   );
 };
 

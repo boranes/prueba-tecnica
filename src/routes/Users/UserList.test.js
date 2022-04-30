@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import UserList from "./UserList";
 import store from "../../store/store";
 import React from "react";
+import UserService from "../../services/Users/users.service";
 
 const Wrapper = ({ children }) => (
   <Provider store={store}>
@@ -13,22 +14,10 @@ const Wrapper = ({ children }) => (
 
 describe("Testing User List Page", () => {
   test("Should show empty message at the beginning and a user list after a while due async call", async () => {
-    const mockedUsers = [
-      {
-        id: 7,
-        email: "michael.lawson@reqres.in",
-        first_name: "Michael",
-        last_name: "Lawson",
-        avatar: "https://reqres.in/img/faces/7-image.jpg",
-      },
-      {
-        id: 8,
-        email: "lindsay.ferguson@reqres.in",
-        first_name: "Lindsay",
-        last_name: "Ferguson",
-        avatar: "https://reqres.in/img/faces/8-image.jpg",
-      },
-    ];
+    let mockedUsers = [];
+    UserService.getUsers(1).then((data) => {
+      mockedUsers = data.data;
+    });
     render(<UserList />, { wrapper: Wrapper });
     expect(screen.getByText("No users were found")).toBeInTheDocument();
     await waitFor(() => {
