@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import UserForm from "../../components/UserForm/UserForm";
 import UserService from "../../services/Users/users.service";
+import StyledAvatar from "../../styled-components/Images/StyledAvatar";
 import StyledContainer from "../../styled-components/Layout/StyledContainer";
 import StyledBorderedLink from "../../styled-components/Links/StyledBorderedLink";
 
@@ -13,10 +15,14 @@ const UserDetail = () => {
     if (user) {
       return (
         <>
-          <div>
-            {user.first_name} {user.last_name}
-          </div>
-          <div>{user.email}</div>
+          <StyledAvatar
+            src={user?.avatar}
+            alt={`${user.first_name} ${user.last_name}`}
+            type="rounded"
+            display="block"
+            margin="15px auto"
+          />
+          <UserForm user={user} setUser={setUser} />
         </>
       );
     }

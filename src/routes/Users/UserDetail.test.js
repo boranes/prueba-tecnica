@@ -19,7 +19,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Testing UserDetail Page", () => {
-  test("UserDetail User data has to be same as mocked User", async () => {
+  test("Should have correct avatar", async () => {
     let mockedUser = [];
     UserService.getUser(2).then((data) => {
       mockedUser = data.data;
@@ -29,12 +29,9 @@ describe("Testing UserDetail Page", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(`${mockedUser.first_name} ${mockedUser.last_name}`)
-      ).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(screen.getByText(mockedUser.email)).toBeInTheDocument();
+        screen.getByAltText(`${mockedUser.first_name} ${mockedUser.last_name}`)
+          .src
+      ).toEqual(mockedUser.avatar);
     });
   });
 });
