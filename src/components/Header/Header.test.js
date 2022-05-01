@@ -1,9 +1,6 @@
-import * as ReactRedux from "react-redux";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useDispatch } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import store from "../../store/store";
 import Header from "./Header";
 
 jest.mock("react-redux", () => ({

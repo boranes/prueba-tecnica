@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Provider, useSelector } from "react-redux";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import UserList from "./UserList";
 import store from "../../store/store";
 import React from "react";
