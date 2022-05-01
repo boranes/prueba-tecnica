@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import Login from "./routes/Login/Login";
+import Register from "./routes/Register/Register";
+import UserDetail from "./routes/Users/UserDetail";
+import UserList from "./routes/Users/UserList";
+import GlobalStyle from "./styled-components/Global/GlobalStyle";
 
 function App() {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const defaultRedirect = (path) => {
+    return isLoggedIn ? path : "/login";
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <div className="App">
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<Navigate to={defaultRedirect("/users")} replace />}
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="users" element={<Outlet />}>
+            <Route index element={<UserList />} />
+            <Route path=":userId" element={<UserDetail />} />
+          </Route>
+        </Routes>
+      </div>
+    </>
   );
 }
 
