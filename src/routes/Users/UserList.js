@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 import Loader from "../../components/Loader/Loader";
 import Paginator from "../../components/Paginator/Paginator";
 import UserCard from "../../components/UserCard/UserCard";
@@ -52,6 +53,7 @@ const UserList = () => {
 
   return (
     <>
+      <Header />
       <StyledContainer>{printUsers()}</StyledContainer>
       {shouldPaginatorBePrinted() ? (
         <Paginator
