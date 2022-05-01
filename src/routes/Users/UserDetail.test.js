@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../store/store";
 import UserService from "../../services/Users/users.service";
@@ -18,11 +18,20 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useSelector: jest.fn(),
+}));
+
 describe("Testing UserDetail Page", () => {
   test("Should have correct avatar", async () => {
     let mockedUser = [];
     UserService.getUser(2).then((data) => {
       mockedUser = data.data;
+    });
+
+    useSelector.mockImplementation((callback) => {
+      return callback({ auth: { isLoggedIn: true, currentUser: "1234" } });
     });
 
     render(<UserDetail />, { wrapper: Wrapper });

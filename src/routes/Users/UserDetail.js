@@ -29,7 +29,7 @@ const UserDetail = () => {
         <>
           <StyledAvatar
             src={user?.avatar}
-            alt={user?.id}
+            alt={`${user.first_name} ${user.last_name}`}
             type="rounded"
             display="block"
             margin="15px auto"
