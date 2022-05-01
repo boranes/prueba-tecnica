@@ -1,5 +1,28 @@
-# Git hooks
-"husky" and "lint-staged" npm packages has been used to configure "pre-commit" actions, using "eslint" before each commit action to ensure code staged having the correct format.
+# Tools
+## Styled Components
+### Npm: https://www.npmjs.com/package/styled-components 
+### Documentation : https://styled-components.com/docs
+"styled-components" has been used to apply styles to the components.
+***
+## Redux, Redux Toolkit and Redux Thunk
+### React Redux (npm): https://www.npmjs.com/package/styled-components 
+### Redux Toolkit: https://redux-toolkit.js.org/introduction/getting-started
+### Redux Thunk: https://www.npmjs.com/package/redux-thunk
+"Redux and Redux Thunk" has been used to apply general state to check if user is logged or not.
+***
+## Fortawesome
+### React-fortawesome (npm): https://www.npmjs.com/package/@fortawesome/react-fontawesome
+"Fortawesome" has been used to get some icons (Paginator)
+***
+## Testing: Testing library and Jest
+### Testing library: https://testing-library.com/docs/
+### Jest: https://jestjs.io/docs/getting-started
+"Testing library" and "Jest" has been used to build test batteries
+***
+## Git hooks
+"husky" and "lint-staged" npm packages has been used to configure "pre-commit" actions, using "eslint" and "prettier" before each commit action to ensure code staged having the correct format.
+
+---------------------------------------
 
 # Getting Started with Create React App
 
@@ -32,6 +55,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+---------------------------------------
 
 # Descripción de la prueba: Prueba técnica de Front End React #
 Este documento comprende los requerimientos para realizar la prueba técnica de Front-End React.
