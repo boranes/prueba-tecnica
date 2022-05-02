@@ -22,7 +22,13 @@
 ## Git hooks
 "husky" and "lint-staged" npm packages have been used to configure "pre-commit" actions, using "eslint" and "prettier" before each commit action to ensure code staged having the correct format.
 
------------------------------º----------
+---------------------------------------
+# Initialize the project
+
+`npm install` to install all packages needed for the project.
+
+---------------------------------------
+
 
 # Getting Started with Create React App
 
