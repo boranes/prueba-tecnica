@@ -40,11 +40,14 @@ const UserList = () => {
 
   useEffect(() => {
     setLoading(true);
-    UserService.getUsers(currentPage).then((data) => {
-      setUsers(data.data);
-      setTotalPages(data.total_pages);
-      setLoading(false);
-    });
+    UserService.getUsers(currentPage)
+      .then((data) => {
+        setUsers(data?.data);
+        setTotalPages(data.total_pages);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [currentPage]);
 
   if (!currentUser) {
