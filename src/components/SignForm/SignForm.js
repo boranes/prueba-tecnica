@@ -24,7 +24,6 @@ const SignForm = ({ title, buttonText, signFunction }) => {
       })
       .catch((error) => {
         showMessage(error);
-        return;
       });
   };
 

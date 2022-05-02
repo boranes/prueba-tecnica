@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import Login from "./routes/Login/Login";
+import NotFound from "./routes/NotFound/NotFound";
 import Register from "./routes/Register/Register";
 import UserDetail from "./routes/Users/UserDetail";
 import UserList from "./routes/Users/UserList";
@@ -29,6 +30,7 @@ function App() {
             <Route index element={<UserList />} />
             <Route path=":userId" element={<UserDetail />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>

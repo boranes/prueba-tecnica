@@ -6,16 +6,18 @@ const call = async (url, options = {}) => {
     }
     return response.json();
   } catch (err) {
-    return new Promise((resolve) => {
-      resolve({
-        error: "Couldn't retrieve response from API",
-      });
-    });
+    return buildErrorResponse("Couldn't retrieve response from API");
   }
 };
 
 const buildUrl = (path) => {
   return `${process.env.REACT_APP_API_BASE_URL}${path}`;
+};
+
+const buildErrorResponse = (message) => {
+  return Promise.reject({
+    error: message,
+  });
 };
 
 const APIService = {
