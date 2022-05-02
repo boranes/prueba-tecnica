@@ -8,7 +8,7 @@
 ### React Redux (npm): https://www.npmjs.com/package/styled-components 
 ### Redux Toolkit: https://redux-toolkit.js.org/introduction/getting-started
 ### Redux Thunk: https://www.npmjs.com/package/redux-thunk
-"Redux and Redux Thunk" has been used to apply general state to check if user is logged or not.
+"Redux" and "Redux Thunk" have been used to apply general state to check if user is logged or not.
 ***
 ## Fortawesome
 ### React-fortawesome (npm): https://www.npmjs.com/package/@fortawesome/react-fontawesome
@@ -17,12 +17,12 @@
 ## Testing: Testing library and Jest
 ### Testing library: https://testing-library.com/docs/
 ### Jest: https://jestjs.io/docs/getting-started
-"Testing library" and "Jest" has been used to build test batteries
+"Testing library" and "Jest" haveº been used to build test batteries
 ***
 ## Git hooks
-"husky" and "lint-staged" npm packages has been used to configure "pre-commit" actions, using "eslint" and "prettier" before each commit action to ensure code staged having the correct format.
+"husky" and "lint-staged" npm packages have been used to configure "pre-commit" actions, using "eslint" and "prettier" before each commit action to ensure code staged having the correct format.
 
----------------------------------------
+-----------------------------º----------
 
 # Getting Started with Create React App
 
